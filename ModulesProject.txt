@@ -1,0 +1,47 @@
+MODULES PLUGIN PROJECT
+
+DESCRIPTION:
+	A module will be a pre-made schematic of blocks that will be availible to players to place on their plots.
+		Examples include a pond, tree, and furniture.
+	Players will left click with a Module to place it if there is space, and right click with a stick named "Module Remover" to remove it.
+
+ROLES:
+	GENERAL
+		Listen to slot switch, retrieve schematic, start particle timer, listen to click, call space check, call file handling, place module, end particle timer, takes module from player.
+			Ends particle timer if users switches away from slot.
+		Listen to right click named Module Remover, call file handling, gives player a module.
+		Call aesthetics methods.
+	
+	PARTICLE TIMER
+		Start: Takes in schematic and player, simulates a placement at the block where the player is looking. Stores timer in hashmap with player as key.
+			Displays particle at each block.
+		End: Takes in player, retrieves timer from hashmap using player as key, and cancels it.
+		
+	SPACE CHECKING AND AESTHETICS
+		Determine if the schematic can be placed at the block the player is looking at.
+		Provide methods for aesthetics, such as messaging players to notify them of:
+			Module cannot be placed.
+			Module placed successfully.
+		Also provide methods for retrieving itemized modules.
+			e.g. ItemStack for Furniture module.
+		Essentially being the face of the Modules plugin.
+		
+	FILE HANDLING
+		Add module
+			Takes in a schematic. Adds a module with an unique ID to the data YAML. Lists serialized locations of all blocks in schematic under the module in the YAML.
+			Adds a serialized location for each block in the module under a Locations configuration section in YAML, with the module ID and block data.
+		Remove module
+			Takes in a block.
+				Attempts to retrieve module ID and block data, returns false if fails.
+				Otherwise, goes through each block in module and sets it back to original state, clears module and all of its blocks' locations from the YAML and returns true.
+				
+NOTES:
+	Be transparent with the rest of the team. Communication is necessary to make all parts fit together seamlessly.
+	Ask questions if you don't understand what you need to do.
+	Be creative.
+	Don't edit other people's code without their permission.
+	What I specified above is detailed just enough to make sure you have an idea of what you have to do, and that what you do would be compatible with others' works.
+		If you disagree on how it should be done, feel free to do it your way. However, make sure that it will work in the big picture. If it will not, either abandon it
+			or get the others to change their code to make it fit.
+	I will not be actively participating in this project, but I will be managing and supervising. Feel free to approach me if you have any questions.
+	Have fun, and happy christmas.
